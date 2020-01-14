@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>RSVP</title>
+</head>
+
+<body>
+
+  <h1>Sessions</h1>
+  <!-- <h2>{data.name}</h2> -->
+  <p>Choose a few date/time blocks to RSVP for an appointment.</p>
+  <form action="">
+    <fieldset>
+      <legend>Filters</legend>
+      <label htmlFor="test_filter">
+        <span>Test Filter</span>
+        <select 
+          name="test_filter" 
+          id="test_filter" 
+          onChange="changeFilter"
+        >
+          <option value="">choose...</option>
+          <!-- { filters.map((id, i) => <option key={i} value={id}>{id}</option>) } -->
+        </select>
+      </label>
+      <label htmlFor="schools_list">
+        <span>Schools List</span>
+        <select 
+          name="schools_list" 
+          id="schools_list" 
+          onChange="filterBySchools"
+        >
+          <option value="">All</option>
+          <!-- { data.school_list.map((id, i) => <option key={i} value={id}>{id}</option>) } -->
+        </select>
+      </label>
+      <label htmlFor="dates_list">
+        <span>Dates List</span>
+        <select 
+          name="dates_list" 
+          id="dates_list" 
+          onChange="filterByDates"
+        >
+          <option value="">All</option>
+          <!-- { arrDays.map((date, j) => <option key={j} value={date}>{date}</option>) } -->
+        </select>
+      </label>
+      <label htmlFor="sites_list">
+        <span>Sites List</span>
+        <select 
+          name="sites_list" 
+          id="sites_list" 
+          onChange="filterBySites"
+        >
+          <option value="">All</option>
+          <!-- { arrSites.map((date, j) => <option key={j} value={date}>{date}</option>) } -->
+        </select>
+      </label>
+    </fieldset>
+    <!-- Insert Table of Data Here -->
+  </form>
+
+  </body>
+
+</html>
