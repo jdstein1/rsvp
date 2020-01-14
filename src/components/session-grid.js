@@ -1,11 +1,13 @@
-import PropTypes from "prop-types"
+// import PropTypes from "prop-types"
 import React from "react"
 // import { Link } from "gatsby"
 
-function parseISOString(s) {
-  var b = s.split(/\D+/);
-  return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
-}
+// import utils from "../scripts/utils.js"
+import SessionDate from "./session-date";
+
+import "./session-grid.css"
+
+// prepare the data...
 
 // get NOW date/time
 // make a date/time obj w many formats
@@ -15,90 +17,63 @@ function parseISOString(s) {
 // if deadline passed: eject
 // else: render the date/time
 
-const SessionRow = ({ data }) => {
+// const {sessions} = data;
 
-  // const {} = data;
+// const fakeNow = "2019-10-16T06:00:00.000-07:00";
 
-  const keysArray = Object.keys(data);
+/**
+ * Create one column per day/date
+ * Create many rows in each column for each appointment slot
+ */
 
-  return (<li>id: {JSON.stringify(data.id)}
-    <ul>{ keysArray.map( (key, j) => {
+const SessionGrid = ({uniqueDates, sessions}) => {
 
-      if ( key === 'id' || data[key] === 'null' ) return null;
+  // const now = new Date().toISOString();
+  // const nowMS = Date.parse(now);
+  // const nowMS = Date.parse(new Date().toISOString() );
+  // console.log(nowMS);
+  
 
-      return (<li>{key}: {JSON.stringify(data[key])}</li>)
+  return (
+    <div>
+      <ul className={'session-grid'}>{uniqueDates.map( (date, i) => {
 
-    })}</ul>
-  </li>)};
+        const appointments = sessions.filter( ( session ) => {
+          return date === session.date;
+        })
 
-const SessionGrid = ({ sessions, now }) => (
-  <div>
-    <ul>{ sessions.map( (sessionObj, i) => {
+        // const { id, date, starts, rsvp_deadline: deadline } = sessionObj;
 
-        const { id, starts, rsvp_deadline } = sessionObj;
+        // const startsMS = Date.parse(starts);
+        // // console.dir(startsMS);
 
-        const now = {};
-        now['ms'] = Date.now();
-        // now['utc'] = now['ms'].toUTCString();
-        // now['iso'] = parseISOString(now);
+        // const appointment = utils.createMonster(startsMS);
+        // // console.log('appointment: ', appointment);
+        
+        // const deadlineMS = Date.parse(deadline);
+        // // console.dir(deadlineMS);
 
-        const due = {};
-        due['ms'] = rsvp_deadline;
-        // due['utc'] = '';
-        // due['iso'] = parseISOString(due);
+        // const rsvp = utils.createMonster(deadlineMS);
+        // // console.log('rsvp: ', rsvp);
 
-        // const starts = {};
+        // let past = 'none';
+        
+        // if (nowMS > deadlineMS) {
+        //   if (nowMS > startsMS) { 
+        //     past = 'appointmentStart'; 
+        //   } else { 
+        //     past = 'rsvpDeadline';
+        //   }
+        // }
 
-        // var msStarts = parseISOString(starts);
-        // var utcStarts = parseISOString(starts);
-        // var isoStarts = parseISOString(starts);
+        // if ((now.ms > rsvp.ms) || (now.ms > appointment.ms) ) return null;
 
-
-        console.log(now);
-        // console.log(msNow);
-
-        console.log(due);
-
-        // if ( msNow > msDue ) return null;
-
-        return <SessionRow key={i} data={sessionObj} />;
+        return <SessionDate key={i} date={date} appointments={appointments} />;
+        // return <SessionRow key={i} id={id} appointment={appointment} rsvp={rsvp} past={past} />;
 
       }) }</ul>
-  </div>
-)
-
-SessionGrid.propTypes = {
-  sessions: PropTypes.array,
+    </div>
+  );
 }
 
-SessionGrid.defaultProps = {
-  sessions: [
-    {
-      "id": 22234,
-      "starts": "2019-11-01T06:00:00.000-07:00",
-      "ends": null,
-      "rsvp_deadline": "2019-10-16T06:00:00.000-07:00",
-      "capacity": 8,
-      "description": "$8175$ IIT - Tower   10 W 35th St.",
-      "status": true,
-      "unable_to_attend": false,
-      "created_at": "2019-09-27T16:00:49.000-07:00",
-      "updated_at": "2019-09-27T16:00:49.000-07:00",
-      "is_full": false
-    },{
-      "id": 22235,
-      "starts": "2019-11-01T06:00:00.000-07:00",
-      "ends": null,
-      "rsvp_deadline": "2019-10-31T06:00:00.000-07:00",
-      "capacity": 8,
-      "description": "$8175$ IIT - Tower   10 W 35th St.",
-      "status": true,
-      "unable_to_attend": false,
-      "created_at": "2019-09-27T16:00:49.000-07:00",
-      "updated_at": "2019-09-27T16:00:49.000-07:00",
-      "is_full": false
-    }
-  ]
-}
-
-export default SessionGrid
+export default SessionGrid;

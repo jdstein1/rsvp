@@ -1,0 +1,22 @@
+li {
+  list-style: none;
+}
+.session-appointment {
+  color: black;
+  border-bottom: 1px solid purple;
+  background: pink;
+  margin: 0;
+  padding: 0;
+}
+.session-appointment.full {
+  color: rgba(0,0,0,0.5);
+  background: mistyrose;
+}
+label {
+  display: flex; 
+  margin: 0;
+  padding: 0.5rem;
+}
+input {
+  margin-right: 0.5rem;
+}

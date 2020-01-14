@@ -1,0 +1,13 @@
+
+.session-grid {
+  color: black;
+  border: 1px solid black;
+  background: lightblue;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,18 @@
+
+.status {
+  color: black;
+  border: 1px solid black;
+  background: lightgrey;
+}
+.rsvp .status.past {
+  color: black;
+}
+.rsvp .status.future {
+  color: black;
+}
+.appt .status.past {
+  color: black;
+}
+.appt .status.future {
+  color: black;
+}
